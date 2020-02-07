@@ -17,11 +17,11 @@ module.exports = {
         let user = await User.findOne({ email }); 
         console.log(user);
         if ( !user ) {
-            return res.send({ error: 'User not found'});
+            return res.status(400).send({ error: 'User not found'});
         }
 
         if (!(user.password == password)) {
-            return res.send({ error: 'Invalid password'});
+            return res.status(400).send({ error: 'Invalid password'});
         }
         
         user.password = undefined;
