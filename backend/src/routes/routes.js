@@ -4,17 +4,16 @@ const uploadConfig = require('../config/upload');
 const UserController = require('../controllers/UserController');
 const TeamController = require('../controllers/TeamController');
 const SessionController = require('../controllers/SessionController');
+const authMiddleware = require('../middlewares/auth');
 
 const routes = express.Router();
 const upload = multer(uploadConfig);
 
-routes.get('/', (req, res) => {
-    res.send("Hello World");
-});
-
 routes.post('/signup', UserController.store);
-routes.post('/authenticate', SessionController.auth);
 
+routes.use(authMiddleware);
+routes.get('/', SessionController.login);
+routes.post('/authenticate', SessionController.auth);
 routes.post('/create_team', upload.single('thumbnail'), TeamController.store);
 
 module.exports = routes;

@@ -33,4 +33,8 @@ module.exports = {
         });
     },
 
+    async login(req, res) {
+        res.send({ user: req.userId });
+    }
+
 }
