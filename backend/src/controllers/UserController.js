@@ -20,7 +20,7 @@ module.exports = {
             user = await User.create( req.body );
         }
         
-        res.send({
+        res.json({
             user, 
             token: generateToken({ id: user.id })
         });

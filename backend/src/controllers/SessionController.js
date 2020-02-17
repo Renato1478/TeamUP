@@ -11,30 +11,31 @@ function generateToken(params = {}) {
 
 module.exports = {
 
-    async auth(req, res) {
-        let { email, password } = req.body;
-        console.log(password);
-        let user = await User.findOne({ email }); 
-        console.log(user);
-        if ( !user ) {
-            return res.status(400).send({ error: 'User not found'});
-        }
-
-        if (!(user.password == password)) {
-            return res.status(400).send({ error: 'Invalid password'});
-        }
-        
-        user.password = undefined;
-        password = undefined;
-
-        res.send({
-            user, 
-            token: generateToken({ id: user.id })
-        });
-    },
-
     async login(req, res) {
-        res.send({ user: req.userId });
-    }
+        try {
+            let { email, password } = req.body;
+            let user = await User.findOne({ email }); 
+
+            if ( !user ) {
+                return res.status(400).send({ error: 'User not found'});
+            }
+
+            if (!(user.password == password)) {
+                return res.status(400).send({ error: 'Invalid password'});
+            }
+            
+            user.password = undefined;
+            password = undefined;
+
+            res.json({
+                user, 
+                token: generateToken({ id: user.id })
+            });
+        } catch (error) {
+            res.json({
+                error: error.message
+            })
+        }
+    },
 
 }

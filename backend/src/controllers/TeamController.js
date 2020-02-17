@@ -22,6 +22,12 @@ module.exports = {
         return res.json(
             team
         );
+    },
+
+    async index(req, res) {
+        const teams = await Team.find();
+
+        res.send(teams);
     }
 
 }
