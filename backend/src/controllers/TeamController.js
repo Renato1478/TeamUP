@@ -27,7 +27,12 @@ module.exports = {
     async index(req, res) {
         const teams = await Team.find();
 
-        res.send(teams);
-    }
+        res.json(teams);
+    },
 
+    async show (req, res) {
+        const team = await Team.findById(req.id);
+
+        return res.json(team);
+    }
 }
