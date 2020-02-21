@@ -19,20 +19,24 @@ module.exports = {
             ],
         });
 
-        return res.json(
+        return res.json({
             team
-        );
+        });
     },
 
     async index(req, res) {
         const teams = await Team.find();
 
-        res.json(teams);
+        res.json({teams});
     },
 
     async show (req, res) {
-        const team = await Team.findById(req.id);
-
-        return res.json(team);
+        try {
+            const { id } = req.body;
+            const team = await Team.findById(id);
+            return res.json({team});
+        } catch (error) {
+            return res.json({error})
+        }
     }
 }
