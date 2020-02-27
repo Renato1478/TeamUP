@@ -15,7 +15,7 @@ const upload = multer(uploadConfig);
 routes.post('/signup', UserController.store);
 routes.post('/login', SessionController.login);
 routes.get('/dashboard', TeamController.index);
-routes.post('/team', TeamController.show);
+routes.get('/team', TeamController.show);
 routes.post('/create_team', upload.single('thumbnail'), TeamController.store);
 
 module.exports = routes;

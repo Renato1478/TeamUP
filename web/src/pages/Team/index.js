@@ -12,6 +12,7 @@ export default function Team() {
         const id = localStorage.getItem('team_id');
         const response = await api.get(`/team/?id=${id}`);
 
+        console.log(response);
         setTeam(response.data.team);
         setOwner(response.data.team.owner);
         setMembers(response.data.team.members);
@@ -54,7 +55,7 @@ function Members({ members }) {
 }
 
 function Owner ({ owner }) {
-    if (!owner) {
+    if (!owner || owner === '') {
         return null;
     }
     return (

@@ -4,13 +4,13 @@ const Team = require('../models/Team');
 module.exports = {
 
     async store(req, res) {
-        const { filename } = req.file;
+        // const { filename } = req.file;
         const { game, location, language} = req.body;
         const { user_id } = req.headers;
 
         const team = await Team.create({
             owner: user_id,
-            thumbnail: filename,
+            // thumbnail: filename,
             game,
             location,
             language,
@@ -32,7 +32,7 @@ module.exports = {
 
     async show (req, res) {
         try {
-            const { id } = req.body;
+            const { id } = req.query;
             const team = await Team.findById(id);
             return res.json({team});
         } catch (error) {
