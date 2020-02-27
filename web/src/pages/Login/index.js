@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import api from '../../services/api';
 
-import './styles.css'
+import logo from '../../assets/logo.svg';
 
 export default function Login({ history }) {
 
@@ -25,8 +25,15 @@ export default function Login({ history }) {
         history.push('/dashboard');
     }
 
-    return (
-        <>
+    return (<>
+        <img className="logo" src={ logo } alt='TeamUP' width='200px' height='200px'/>
+
+        <div className='content'>
+
+            <head>
+                <link rel="stylesheet" href="./styles.css" ></link>
+            </head>
+
             <form onSubmit={handleSubmit}>
 
             <p>
@@ -50,9 +57,9 @@ export default function Login({ history }) {
                 onChange={event => setPassword(event.target.value)}
             />
 
-            <button>LOGIN</button>
+            <button className='btn-red'>LOGIN</button>
 
             </form>
-        </>
-    )
+        </div>
+    </>)
 };

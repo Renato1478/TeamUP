@@ -1,0 +1,22 @@
+.team-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-content strong {
+    margin-bottom: 10px;
+}
+
+.team-content span {
+    color: rgb(37, 37, 37);
+    padding-bottom: 5px;
+}
+
+.name {
+    font-size: 32px;
+}
+
+.game {
+    font-size: 22px;
+}
+
